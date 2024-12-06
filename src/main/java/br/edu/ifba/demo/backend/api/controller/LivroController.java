@@ -69,9 +69,11 @@ public class LivroController {
 
         if (livro.isPresent()) {
             libRepository.delete(livro.get());
-            return new ResponseEntity<>(livro.get(), HttpStatus.OK);
+            System.out.println("Livro deletado com sucesso, ID: " + id_livro);
+            return ResponseEntity.noContent().build();
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            System.out.println("Livro não encontrado, ID: " + id_livro);
+            return ResponseEntity.notFound().build();
         }
     }
 
