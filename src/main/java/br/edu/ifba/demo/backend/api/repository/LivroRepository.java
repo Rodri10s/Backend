@@ -9,6 +9,7 @@ import java.util.Optional;
 @Repository
 public interface LivroRepository
         extends JpaRepository<LivroModel, Long> {
+
     Optional<LivroModel> findByIsbn(Integer isbn);
 
     Optional<LivroModel> findByTitulo(String titulo);
