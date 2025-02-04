@@ -1,9 +1,12 @@
 package br.edu.ifba.demo.backend.api.dto;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.edu.ifba.demo.backend.api.model.LivroModel;
 import lombok.Data;
 
@@ -19,7 +22,9 @@ public class LivroDTO implements Serializable {
     private Integer num_paginas;
     private String sinopse;
     private String idioma;
-    private Timestamp data_cadastro;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private LocalDateTime data_cadastro;
     private Double preco;
 
     public static LivroDTO converter(LivroModel livroModel) {
