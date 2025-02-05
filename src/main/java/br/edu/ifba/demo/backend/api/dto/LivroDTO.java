@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import br.edu.ifba.demo.backend.api.model.LivroModel;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class LivroDTO implements Serializable {
     private String sinopse;
     private String idioma;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime data_cadastro;
     private Double preco;
 
