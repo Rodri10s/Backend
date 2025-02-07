@@ -7,17 +7,20 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.edu.ifba.demo.backend.api.model.LivroModel;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LivroDTO implements Serializable {
     private Long id_livro;
     private String titulo;
     private String autor;
     private String editora;
     private Integer ano_publicacao;
-    private String genero;
+    private GeneroDTO genero;
     private Integer isbn;
     private Integer num_paginas;
     private String sinopse;
@@ -34,7 +37,7 @@ public class LivroDTO implements Serializable {
         livro.setAutor(livroModel.getAutor());
         livro.setEditora(livroModel.getEditora());
         livro.setAno_publicacao(livroModel.getAno_publicacao());
-        livro.setGenero(livroModel.getGenero());
+        livro.setGenero(GeneroDTO.converter(livroModel.getGenero()));
         livro.setIsbn(livroModel.getIsbn());
         livro.setNum_paginas(livroModel.getNum_paginas());
         livro.setSinopse(livroModel.getSinopse());

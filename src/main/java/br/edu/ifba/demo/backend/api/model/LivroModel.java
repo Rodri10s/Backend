@@ -1,6 +1,5 @@
 package br.edu.ifba.demo.backend.api.model;
 
-import lombok.Data;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -8,7 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
@@ -32,8 +34,9 @@ public class LivroModel {
     @Column(name = "ano_publicacao", nullable = true)
     private Integer ano_publicacao;
 
-    @Column(name = "genero", nullable = true)
-    private String genero;
+    @ManyToOne
+    @JoinColumn(name = "genero_id")
+    private GeneroModel genero;
 
     @Column(name = "isbn", nullable = true)
     private Integer isbn;
@@ -56,8 +59,9 @@ public class LivroModel {
     public LivroModel() {
     }
 
-    public LivroModel(Long id_livro, String titulo, String autor, String editora, Integer ano_publicacao, String genero,
-            Integer isbn, Integer num_paginas, String sinopse, String idioma, LocalDateTime data_cadastro,
+    public LivroModel(Long id_livro, String titulo, String autor, String editora, Integer ano_publicacao,
+            GeneroModel genero, Integer isbn, Integer num_paginas, String sinopse, String idioma,
+            LocalDateTime data_cadastro,
             Double preco) {
         this.id_livro = id_livro;
         this.titulo = titulo;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifba.demo.backend.api.repository.LivroRepository;
+import br.edu.ifba.demo.backend.api.dto.LivroDTO;
 import br.edu.ifba.demo.backend.api.model.LivroModel;
 
 @RestController
@@ -40,10 +41,10 @@ public class LivroController {
     }
 
     @GetMapping("/getById/{id_livro}")
-    public LivroModel getById(@PathVariable("id_livro") Long id_livro) {
+    public LivroDTO getById(@PathVariable("id_livro") Long id_livro) {
         Optional<LivroModel> livro = libRepository.findById(id_livro);
         if (livro.isPresent())
-            return livro.get();
+            return LivroDTO.converter(livro.get());
         return null;
     }
 
